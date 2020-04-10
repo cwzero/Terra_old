@@ -1,0 +1,10 @@
+{
+    "mods": [
+        "recurrent-complex",
+        "initial-inventory",
+        "topography",
+        "modtweaker",
+        "extended-crafting",
+        "contenttweaker"
+    ]
+}

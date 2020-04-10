@@ -1,0 +1,14 @@
+ext {
+	jdbiVersion = '3.12.2'
+}
+
+dependencies {
+	implementation group: 'org.jdbi', name: 'jdbi3-core', version: jdbiVersion
+	implementation group: 'org.jdbi', name: 'jdbi3-guava', version: jdbiVersion
+	implementation group: 'org.jdbi', name: 'jdbi3-jackson2', version: jdbiVersion
+	implementation group: 'org.jdbi', name: 'jdbi3-commons-text', version: jdbiVersion
+	implementation group: 'org.jdbi', name: 'jdbi3-stringtemplate4', version: jdbiVersion
+	implementation group: 'org.jdbi', name: 'jdbi3-sqlobject', version: jdbiVersion	
+	
+	testImplementation group: 'org.jdbi', name: 'jdbi3-testing', version: jdbiVersion
+}

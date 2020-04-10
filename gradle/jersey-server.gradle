@@ -1,0 +1,15 @@
+apply from: "${gradleDir}/jersey-common.gradle"
+
+ext {
+	grizzlyVersion = '2.4.4'
+	hk2Version = '2.6.1'
+}
+
+dependencies {
+	api group: 'org.glassfish.jersey.core', name: 'jersey-server', version: jerseyVersion
+	//implementation group: 'org.glassfish.hk2', name: 'guice-bridge', version: hk2Version
+
+    implementation group: 'org.glassfish.grizzly', name: 'grizzly-http-server', version: grizzlyVersion
+	implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-grizzly2-http', version: jerseyVersion
+	implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-grizzly2-servlet', version: jerseyVersion
+}

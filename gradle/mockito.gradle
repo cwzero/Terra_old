@@ -1,0 +1,7 @@
+ext {
+	mockitoVersion = '3.3.3'
+}
+
+dependencies {
+	testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
+}

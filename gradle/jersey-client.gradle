@@ -1,0 +1,7 @@
+apply from: "${gradleDir}/jersey-common.gradle"
+apply from: "${gradleDir}/http-client.gradle"
+
+dependencies {
+	api group: 'org.glassfish.jersey.core', name: 'jersey-client', version: jerseyVersion
+	api group: 'org.glassfish.jersey.connectors', name: 'jersey-apache-connector', version: jerseyVersion
+}

@@ -1,0 +1,10 @@
+ext {
+	jooqVersion = '3.13.1'
+}
+
+dependencies {
+	implementation group: 'org.jooq', name: 'jooq', version: jooqVersion
+	implementation group: 'org.jooq', name: 'jooq-checker', version: jooqVersion
+	implementation group: 'org.jooq', name: 'jooq-codegen', version: jooqVersion
+	implementation group: 'org.jooq', name: 'jooq-meta', version: jooqVersion
+}

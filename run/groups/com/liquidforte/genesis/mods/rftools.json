@@ -1,0 +1,8 @@
+{
+    "mods": [
+        "rftools-dimensions",
+        "rftools-control",
+        "rftools-power",
+        "rftools-power-oc-integration"
+    ]
+}

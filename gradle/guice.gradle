@@ -1,0 +1,19 @@
+apply from: "${gradleDir}/guava.gradle"
+
+ext {
+	guiceVersion = '4.2.3'
+}
+
+dependencies {
+	api group: 'com.google.inject', name: 'guice', version: guiceVersion
+	api group: 'com.google.inject.extensions', name: 'guice-assistedinject', version: guiceVersion
+	api group: 'com.google.inject.extensions', name: 'guice-multibindings', version: guiceVersion
+}
+
+tasks.withType(JavaExec) {
+	jvmArgs += ['--add-opens', 'java.base/java.lang=ALL-UNNAMED']
+}
+
+test {
+	jvmArgs += ['--add-opens', 'java.base/java.lang=ALL-UNNAMED']	
+}

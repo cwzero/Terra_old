@@ -1,0 +1,10 @@
+{
+    "mods": [
+        "oc-ender-io-driver",
+        "oc-xnet-driver",
+        "ynot",
+        "integrated-tunnels",
+        "super-factory-manager",
+        "funky-locomotion"
+    ]
+}

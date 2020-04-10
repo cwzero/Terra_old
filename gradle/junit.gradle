@@ -1,0 +1,12 @@
+ext {
+	jupiterVersion = '5.6.1'
+}
+
+dependencies {
+	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jupiterVersion
+	testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jupiterVersion
+}
+
+test {
+	useJUnitPlatform()
+}

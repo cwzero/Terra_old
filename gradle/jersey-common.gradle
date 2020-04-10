@@ -1,0 +1,11 @@
+apply from: "${gradleDir}/jackson.gradle"
+
+ext {
+	jerseyVersion = '2.30.1'
+}
+
+dependencies {
+	api group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: jerseyVersion
+	api group: 'org.glassfish.jersey.core', name: 'jersey-common', version: jerseyVersion
+    api group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: jerseyVersion
+}

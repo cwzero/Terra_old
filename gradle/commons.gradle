@@ -1,0 +1,13 @@
+ext {
+	cliVersion = '1.4'
+	codecVersion = '1.14'
+	ioVersion = '2.6'
+	jexlVersion = '3.1'
+}
+
+dependencies {
+	implementation group: 'commons-cli', name: 'commons-cli', version: cliVersion
+	implementation group: 'commons-codec', name: 'commons-codec', version: codecVersion
+	implementation group: 'commons-io', name: 'commons-io', version: ioVersion
+	implementation group: 'org.apache.commons', name: 'commons-jexl3', version: jexlVersion
+}
