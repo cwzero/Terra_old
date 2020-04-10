@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import com.google.inject.Inject;
 import com.liquidforte.terra.client.TerraClient;
 import com.liquidforte.terra.database.CacheDatabase;
+import com.liquidforte.terra.database.DependencyDao;
 import com.liquidforte.terra.model.lock.FileDependency;
 import com.liquidforte.terra.model.lock.FileLock;
 import com.liquidforte.terra.util.DownloadUtil;
@@ -59,10 +60,10 @@ public class FileCache extends AbstractCache<CacheDatabase> implements IFileCach
 
 	@Override
 	public void installFile(Path destDir, long addonId, long fileId) throws IOException {
-		FileLock file = getFile(addonId, fileId);
+		FileLock file = getFile(addonId, fileId);		
 		Path destFile = destDir.resolve(file.getFileName());
 
-		for (FileDependency dep : file.getDependencies()) {
+		for (FileDependency dep : getDependencies(addonId, fileId)) {
 			long depAddonId = dep.getAddonId();
 			long depFileId = lockCache.getLock(depAddonId, "true");
 			
@@ -91,6 +92,17 @@ public class FileCache extends AbstractCache<CacheDatabase> implements IFileCach
 	@Override
 	public List<FileDependency> getDependencies(long addonId, long fileId) {
 		FileLock lock = getFile(addonId, fileId);
+		
+		try {
+			getDatabase().withJdbiExtension(DependencyDao.class, dao -> dao.getDependencies(addonId)).forEach(d -> {
+				if (!lock.getDependencies().stream().anyMatch(dep -> dep.getAddonId() == d.getAddonId())) {
+					lock.getDependencies().add(d);
+				}
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return lock.getDependencies();
 	}
 
