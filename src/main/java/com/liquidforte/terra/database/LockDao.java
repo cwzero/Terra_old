@@ -17,4 +17,7 @@ public interface LockDao {
 	
 	@SqlQuery("SELECT ADDON_ID FROM LOCK")
 	List<Long> getAddons();
+	
+	@SqlQuery("SELECT FILTER FROM LOCK WHERE ADDON_ID = ?")
+	List<String> getFilters(long addonId);
 }

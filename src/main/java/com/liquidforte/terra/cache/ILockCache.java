@@ -15,5 +15,8 @@ public interface ILockCache {
 	FileLock getFile(long addonId, String filter);
 
 	FileLock getFile(String slug, String filter);
-
+	
+	void load();
+	
+	void save();
 }

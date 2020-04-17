@@ -11,7 +11,7 @@ public class CacheModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bind(IFileCache.class).to(FileCache.class);
-		bind(ILockCache.class).to(LockCache.class);
+		bind(ILockCache.class).to(LockCache.class).asEagerSingleton();
 		bind(ModCache.class);
 	}
 }

@@ -4,16 +4,21 @@ import com.google.inject.Inject;
 import com.liquidforte.terra.client.TerraClient;
 import com.liquidforte.terra.database.LockDatabase;
 import com.liquidforte.terra.model.lock.FileLock;
+import com.liquidforte.terra.model.lock.PackLock;
+import com.liquidforte.terra.storage.Storage;
 
 public class LockCache extends AbstractCache<LockDatabase> implements ILockCache {
 	private ModCache modCache;
 	private IFileCache fileCache;
+	private Storage storage;
 
 	@Inject
-	public LockCache(TerraClient client, LockDatabase database, ModCache modCache, IFileCache fileCache) {
+	public LockCache(TerraClient client, LockDatabase database, ModCache modCache, IFileCache fileCache,
+			Storage storage) {
 		super(client, database);
 		this.modCache = modCache;
 		this.fileCache = fileCache;
+		this.storage = storage;
 	}
 
 	@Override
@@ -69,5 +74,31 @@ public class LockCache extends AbstractCache<LockDatabase> implements ILockCache
 	@Override
 	public FileLock getFile(String slug, String filter) {
 		return fileCache.getFile(modCache.getAddonId(slug), getLock(slug, filter));
+	}
+
+	@Override
+	public void load() {
+		PackLock packLock = storage.loadLock();
+
+		for (long addonId : packLock.keys()) {
+			for (String filter : packLock.filters(addonId)) {
+				long lock = packLock.getLock(addonId, filter);
+				getDatabase().lock(addonId, filter, lock);
+			}
+		}
+	}
+
+	@Override
+	public void save() {
+		PackLock packLock = new PackLock();
+
+		for (long addonId : getDatabase().getAddons()) {
+			for (String filter : getDatabase().getFilters(addonId)) {
+				long lock = getDatabase().getLock(addonId, filter);
+				packLock.set(addonId, filter, lock);
+			}
+		}
+
+		storage.saveLock(packLock);
 	}
 }

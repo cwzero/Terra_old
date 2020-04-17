@@ -1,5 +1,8 @@
 package com.liquidforte.terra.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.inject.Inject;
 import com.liquidforte.terra.config.LockConfig;
 
@@ -15,6 +18,24 @@ public class LockDatabase extends AbstractDatabase {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<String> getFilters(long addonId) {
+		try {
+			return withJdbiExtension(LockDao.class, dao -> dao.getFilters(addonId));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<String>();
+	}
+
+	public List<Long> getAddons() {
+		try {
+			return withJdbiExtension(LockDao.class, dao -> dao.getAddons());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Long>();
 	}
 
 	public long getLock(long addonId, String filter) {
