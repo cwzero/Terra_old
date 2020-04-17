@@ -19,4 +19,6 @@ public interface ILockCache {
 	void load();
 	
 	void save();
+
+	void updateAll();
 }

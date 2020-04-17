@@ -101,4 +101,13 @@ public class LockCache extends AbstractCache<LockDatabase> implements ILockCache
 
 		storage.saveLock(packLock);
 	}
+
+	@Override
+	public void updateAll() {
+		for (long addonId : getDatabase().getAddons()) {
+			for (String filter : getDatabase().getFilters(addonId)) {
+				update(addonId, filter);
+			}
+		}
+	}
 }
