@@ -8,6 +8,10 @@ import com.liquidforte.terra.json.ModSpecSerializer;
 public class ModSpec {
 	private String slug = "";
 	private String filter = "true";
+	
+	public ModSpec() {
+		
+	}
 
 	@JsonCreator
 	public ModSpec(String slug) {
