@@ -4,13 +4,10 @@ import com.google.inject.Inject;
 import com.liquidforte.terra.cache.ILockCache;
 import com.liquidforte.terra.mode.Mode;
 
-public class UpdateCommand extends AbstractCommand {
-	private ILockCache lockCache;
-	
+public class UpdateCommand extends CommandBase {	
 	@Inject
 	public UpdateCommand(Mode mode, ILockCache lockCache) {
-		super(mode);
-		this.lockCache = lockCache;
+		super(mode, lockCache);
 	}
 
 	@Override

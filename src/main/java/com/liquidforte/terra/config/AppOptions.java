@@ -49,6 +49,15 @@ public class AppOptions {
 
 			Option groupsDirOption = new Option("gd", "groupsDir", true, "path to dir for groups");
 			options.addOption(groupsDirOption);
+			
+			Option minecraftVersionOption = new Option("mcVer", "minecraftVersion", true, "Minecraft Version");
+			options.addOption(minecraftVersionOption);
+			
+			Option forgeVersionOption = new Option("fVer", "forgeVersion", true, "Minecraft Forge Version");
+			options.addOption(forgeVersionOption);
+			
+			Option manifestPathOption = new Option("mPath", "manifestPath", true, "Twitch Manifest Path");
+			options.addOption(manifestPathOption);
 		}
 
 		return options;
@@ -133,5 +142,23 @@ public class AppOptions {
 		parse();
 
 		return Paths.get(cmd.getOptionValue("groupsDir", "groups"));
+	}
+
+	public String getMinecraftVersion(String defMCVer) {
+		parse();
+		
+		return cmd.getOptionValue("minecraftVersion", defMCVer);
+	}
+
+	public String getForgeVersion(String defFVer) {
+		parse();
+		
+		return cmd.getOptionValue("forgeVersion", defFVer);
+	}
+	
+	public String getManifestPath(String defMPath) {
+		parse();
+		
+		return cmd.getOptionValue("manifestPath", defMPath);
 	}
 }

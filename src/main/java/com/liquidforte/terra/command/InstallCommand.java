@@ -12,7 +12,7 @@ import com.liquidforte.terra.mode.Mode;
 import com.liquidforte.terra.model.Group;
 import com.liquidforte.terra.model.ModSpec;
 
-public class InstallCommand extends AbstractCommand {
+public class InstallCommand extends CommandBase {
 	protected GroupLoader loader;
 	protected IFileCache fileCache;
 	protected ModCache modCache;
@@ -22,12 +22,7 @@ public class InstallCommand extends AbstractCommand {
 	@Inject
 	public InstallCommand(Mode mode, GroupLoader loader, IFileCache fileCache, ModCache modCache, ILockCache lockCache,
 			AppOptions options) {
-		super(mode);
-		this.loader = loader;
-		this.fileCache = fileCache;
-		this.modCache = modCache;
-		this.lockCache = lockCache;
-		this.options = options;
+		super(mode, loader, fileCache, modCache, lockCache, options);
 	}
 
 	@Override

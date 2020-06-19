@@ -9,19 +9,10 @@ import com.liquidforte.terra.mode.Mode;
 import com.liquidforte.terra.model.Group;
 import com.liquidforte.terra.model.ModSpec;
 
-public class ResolveCommand extends AbstractCommand {
-	protected GroupLoader loader;
-	protected IFileCache fileCache;
-	protected ModCache modCache;
-	protected ILockCache lockCache;
-
+public class ResolveCommand extends CommandBase {
 	@Inject
 	public ResolveCommand(Mode mode, GroupLoader loader, IFileCache fileCache, ModCache modCache, ILockCache lockCache) {
-		super(mode);
-		this.loader = loader;
-		this.fileCache = fileCache;
-		this.modCache = modCache;
-		this.lockCache = lockCache;
+		super(mode, loader, fileCache, modCache, lockCache);
 	}
 
 	@Override

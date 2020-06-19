@@ -1,5 +1,6 @@
 package com.liquidforte.terra.command;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,16 @@ public class CommandParser {
 		this.options = options;
 		this.mode = mode;
 		this.commands = commands;
+	}
+
+	public Object[] run(String[] c) {
+		List<Object> result = new ArrayList<>();
+		
+		for (String i : c) {
+			result.add(run(i));
+		}
+		
+		return result.toArray();
 	}
 
 	public Object run(String invoked) {
@@ -40,6 +51,6 @@ public class CommandParser {
 	}
 
 	public Object run() {
-		return run(options.getCommand());
+		return run(options.getCommand().split(" "));
 	}
 }
