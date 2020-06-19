@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.liquidforte.terra.model.FileBase;
-import com.liquidforte.terra.model.lock.FileDependency;
 
 public class FileLock extends FileBase {
 	private List<FileDependency> dependencies = new ArrayList<FileDependency>();
