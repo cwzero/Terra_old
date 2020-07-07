@@ -17,8 +17,12 @@ public class FileStorage implements Storage {
 
 	@Override
 	public PackLock loadLock() {
+		File lockFile = new File("pack.lock");
 		try {
-			return mapper.readValue(new File("pack.lock"), PackLock.class);
+			if (!lockFile.exists()) {
+				lockFile.createNewFile();
+			}
+			return mapper.readValue(lockFile, PackLock.class);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
