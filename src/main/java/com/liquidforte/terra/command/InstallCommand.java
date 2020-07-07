@@ -13,12 +13,6 @@ import com.liquidforte.terra.model.Group;
 import com.liquidforte.terra.model.ModSpec;
 
 public class InstallCommand extends CommandBase {
-	protected GroupLoader loader;
-	protected IFileCache fileCache;
-	protected ModCache modCache;
-	protected ILockCache lockCache;
-	protected AppOptions options;
-
 	@Inject
 	public InstallCommand(Mode mode, GroupLoader loader, IFileCache fileCache, ModCache modCache, ILockCache lockCache,
 			AppOptions options) {
